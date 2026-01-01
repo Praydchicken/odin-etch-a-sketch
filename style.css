@@ -38,6 +38,25 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-#root, #__next {
-  isolation: isolate;
+.heading {
+	font-family: sans-serif;
+	text-align: center;
+}
+
+.board {
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid grey;
+}
+
+.row {
+	flex: 1;
+	display: flex;
+}
+
+.row__pixel {
+	flex:1;
 }
