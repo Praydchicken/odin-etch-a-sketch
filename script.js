@@ -1,5 +1,11 @@
 const boardElement = document.querySelector('.js-board');
 
+boardElement.addEventListener('mouseover', event => {
+	if(event.target.classList.contains('row__pixel')) {
+		event.target.classList.add('row__pixel--draw');
+	}
+});
+
 function createGrid(gridSize = 10) {
 	for (let i = 0; i < gridSize; i++) {
 		const gridElement = document.createElement('div');
@@ -13,3 +19,5 @@ function createGrid(gridSize = 10) {
 		}
 	}
 }
+
+createGrid();
