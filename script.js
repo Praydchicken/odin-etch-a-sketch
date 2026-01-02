@@ -44,6 +44,10 @@ drawControlElement.addEventListener('click', (event) => {
 		settings.rainbow = !settings.rainbow;
 		btn.textContent = settings.rainbow ? 'RAINBOW MODE: ON' : 'RAINBOW MODE: OFF';
 	}
+
+	if (btn.classList.contains('js-clear')) {
+		clearDraw();
+	}
 });
 
 function createGrid(gridSize = 10) {
@@ -95,5 +99,15 @@ function draw(pixel) {
 			console.log('Color set to:', pixel.style.backgroundColor);
 	}
 }
+
+function clearDraw() {
+	const pixelsElement = document.querySelectorAll('.row__pixel');
+
+	pixelsElement.forEach(pixelElement => {
+		pixelElement.classList.remove('row__pixel--draw');
+		pixelElement.removeAttribute('style');
+	});
+}
+
 
 createGrid();
