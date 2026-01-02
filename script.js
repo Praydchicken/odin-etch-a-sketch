@@ -1,4 +1,6 @@
 const boardElement = document.querySelector('.js-board');
+const inputElement = document.querySelector('.js-input-size');
+const buttonElement = document.querySelector('.js-btn-size');
 
 boardElement.addEventListener('mouseover', event => {
 	if(event.target.classList.contains('row__pixel')) {
@@ -6,7 +8,26 @@ boardElement.addEventListener('mouseover', event => {
 	}
 });
 
+inputElement.addEventListener('keydown', event => {
+	if(event.key === 'Enter'){
+		changeGridSize(inputElement.value);
+		inputElement.value = '';
+		inputElement.blur();
+
+		event.preventDefault();
+	}
+});
+
+buttonElement.addEventListener('click', (event) => {
+	changeGridSize(inputElement.value);
+	inputElement.value = '';
+
+	event.preventDefault();
+});
+
 function createGrid(gridSize = 10) {
+	boardElement.replaceChildren();
+
 	for (let i = 0; i < gridSize; i++) {
 		const gridElement = document.createElement('div');
 		gridElement.classList.add('row');
@@ -18,6 +39,16 @@ function createGrid(gridSize = 10) {
 			gridElement.appendChild(pixelElement);
 		}
 	}
+}
+
+function changeGridSize(size) {
+	if (size < 10 || size > 100) {
+		inputElement.value = '';
+		alert('Size Error! Please Enter numbers only 1 - 100!');
+		return;
+	}
+
+	createGrid(size);
 }
 
 createGrid();
